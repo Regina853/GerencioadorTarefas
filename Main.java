@@ -10,12 +10,12 @@ public class Main{
         int opcao = 0;
 
         while (opcao != 7) {
-            System.out.println("\n1 - Adicionar tarefa");
-            System.out.println("2 - Listar tarefas");
-            System.out.println("3 - Marcar tarefa como concluída");
-            System.out.println("4 - Editar tarefa");
-            System.out.println("5 - Listar tarefas concluídas");
-            System.out.println("6 - Remover tarefa");
+            System.out.println("\n1 - Adicionar Tarefas");
+            System.out.println("2 - Listar Tarefas");
+            System.out.println("3 - Marcar Tarefa como concluída");
+            System.out.println("4 - Editar Tarefa");
+            System.out.println("5 - Listar Tarefas concluídas");
+            System.out.println("6 - Remover Tarefa ");
             System.out.println("7 - Sair");
             System.out.println("-------------------------");
             System.out.print("Digite o numero da opção desejada: ");
@@ -29,7 +29,7 @@ public class Main{
                     System.out.println("Digite o nome da nova tarefa:");
                     String novaTarefa = scanner.nextLine();
                     scanner.nextLine(); // Limpar o buffer do scanner
-                    tarefas.add(novaTarefa);
+                    tarefas.add(new Tarefas(novaTarefa).getDescricao());
                     System.out.println("Tarefa adicionada com sucesso!");
                     break;
 
@@ -37,7 +37,7 @@ public class Main{
                     // Lógica para listar tarefas
                     System.out.println("Tarefas:"); 
                     scanner.nextLine(); // Limpar o buffer do scanner
-                    for (String tarefa : tarefas) {
+                    for (Tarefas tarefa : tarefas) {
                         System.out.println("- " + tarefa);
                     }
                     break;
