@@ -6,7 +6,7 @@ public class Main{
         Scanner scanner = new Scanner(System.in);
         System.out.println(" \n---Gestor de tarefas---");
         System.out.println("Digite o número da opção desejada:");
-        ArrayList<String> tarefas = new ArrayList<>();
+        ArrayList<Tarefas> tarefas = new ArrayList<>();
         int opcao = 0;
 
         while (opcao != 7) {
@@ -29,17 +29,13 @@ public class Main{
                     System.out.println("Digite o nome da nova tarefa:");
                     String novaTarefa = scanner.nextLine();
                     scanner.nextLine(); // Limpar o buffer do scanner
-                    tarefas.add(new Tarefas(novaTarefa).getDescricao());
+                    tarefas.add(new Tarefas(novaTarefa));
                     System.out.println("Tarefa adicionada com sucesso!");
                     break;
 
                 case 2:
                     // Lógica para listar tarefas
-                    System.out.println("Tarefas:"); 
-                    scanner.nextLine(); // Limpar o buffer do scanner
-                    for (Tarefas tarefa : tarefas) {
-                        System.out.println("- " + tarefa);
-                    }
+                    Listar_Tarefas.listarTarefas(tarefas);
                     break;
 
                 case 3:
@@ -48,8 +44,7 @@ public class Main{
                     int indice = scanner.nextInt() - 1;
                     scanner.nextLine(); // Limpar o buffer do scanner
                     if (indice >= 0 && indice < tarefas.size()) {
-                        String tarefa = tarefas.get(indice);
-                        tarefas.set(indice, "[X] " + tarefa);
+                        tarefas.get(indice).marcarComoConcluida();
                         System.out.println("Tarefa marcada como concluída!");
                     } else {
                         System.out.println("Índice inválido.");
@@ -64,7 +59,7 @@ public class Main{
                     if (indiceEditar >= 0 && indiceEditar < tarefas.size()) {
                         System.out.println("Digite o novo nome da tarefa:");
                         String novaDescricao = scanner.nextLine();
-                        tarefas.set(indiceEditar, novaDescricao);
+                        tarefas.set(indiceEditar, new Tarefas(novaDescricao));
                         System.out.println("Tarefa editada com sucesso!");
                     } else {
                         System.out.println("Índice inválido.");
@@ -75,9 +70,9 @@ public class Main{
                     // Lógica para listar tarefas concluídas
                     System.out.println("Tarefas concluídas:");
                     scanner.nextLine(); // Limpar o buffer do scanner
-                    for (String tarefa : tarefas) {
-                        if (tarefa.startsWith("[X]")) {
-                            System.out.println("- " + tarefa);
+                    for (Tarefas tarefa : tarefas) {
+                        if (tarefa.isConcluida()) {
+                            System.out.println("- " + tarefa.getDescricao());
                         }
                     }
                     break;
