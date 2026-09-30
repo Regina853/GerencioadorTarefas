@@ -1,7 +1,7 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(" \n---Gestor de tarefas---");
@@ -28,8 +28,13 @@ public class Main{
                     // Lógica para adicionar tarefa
                     System.out.println("Digite o nome da nova tarefa:");
                     String novaTarefa = scanner.nextLine();
-                    scanner.nextLine(); // Limpar o buffer do scanner
-                    tarefas.add(new Tarefas(novaTarefa));
+
+                    if (novaTarefa == null || novaTarefa.trim().isEmpty()) {
+                        System.out.println("A tarefa não pode estar vazia.");
+                        break;
+                    }
+
+                    tarefas.add(new Tarefas(novaTarefa.trim()));
                     System.out.println("Tarefa adicionada com sucesso!");
                     break;
 
@@ -43,8 +48,7 @@ public class Main{
                     System.out.println("Digite o número da tarefa a ser marcada como concluída:");
                     int indice = scanner.nextInt() - 1;
                     scanner.nextLine(); // Limpar o buffer do scanner
-                    if (indice >= 0 && indice < tarefas.size()) {
-                        tarefas.get(indice).marcarComoConcluida();
+                    if (Marcar_como_Concluida.marcarComoConcluida(tarefas, indice)) {
                         System.out.println("Tarefa marcada como concluída!");
                     } else {
                         System.out.println("Índice inválido.");
@@ -59,11 +63,11 @@ public class Main{
                     if (indiceEditar >= 0 && indiceEditar < tarefas.size()) {
                         System.out.println("Digite o novo nome da tarefa:");
                         String novaDescricao = scanner.nextLine();
-                        tarefas.set(indiceEditar, new Tarefas(novaDescricao));
+                        tarefas.get(indiceEditar).editarDescricao(novaDescricao);
                         System.out.println("Tarefa editada com sucesso!");
                     } else {
                         System.out.println("Índice inválido.");
-                    }   
+                    }
                     break;
 
                 case 5:
