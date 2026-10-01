@@ -3,12 +3,19 @@ public class Tarefas {
     private boolean concluida;
 
     public Tarefas(String descricao) {
-        this.descricao = descricao;
+        setDescricao(descricao);
         this.concluida = false;
     }
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição da tarefa não pode estar vazia.");
+        }
+        this.descricao = descricao.trim();
     }
 
     public boolean isConcluida() {
@@ -20,13 +27,11 @@ public class Tarefas {
     }
 
     public void editarDescricao(String novaDescricao) {
-        this.descricao = novaDescricao;
+        setDescricao(novaDescricao);
     }
 
     @Override
     public String toString() {
         return (concluida ? "[X] " : "[ ] ") + descricao;
     }
-    
-    
 }

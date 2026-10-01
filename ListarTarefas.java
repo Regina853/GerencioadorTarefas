@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Listar_Tarefas {
+public class ListarTarefas {
     public static void listarTarefas(ArrayList<Tarefas> tarefas) {
         if (tarefas.isEmpty()) {
             System.out.println("Nenhuma tarefa cadastrada.");

@@ -1,0 +1,2 @@
+1;Arrumar armario
+0;Estudar Java
